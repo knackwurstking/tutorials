@@ -5,7 +5,7 @@
 - Install the [gin-gonic](https://github.com/gin-gonic/gin)
     `go get -u github.com/gin-gonic/gin`
 - Create initial main.go file
-```golang
+```go
 package main
 
 import (
@@ -25,3 +25,26 @@ func main() {
 - Run `go mod tidy`
 - Render a template:
     - Create: "index.html"
+    ```html
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <title>HTMX Counter</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./htmx-1.9.10.js"></script>
+    </head>
+
+    <body>
+        <div id="counter">0</div>
+        <button hx-target="#counter" hx-post="/decrease">
+            Decrease
+        </button>
+        <button hx-target="#counter" hx-post="/increase">
+            Increase
+        </button>
+    </body>
+
+    </html>
+    ```

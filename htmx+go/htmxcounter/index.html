@@ -5,12 +5,17 @@
     <title>HTMX Counter</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./tailwind.js"></script>
     <script src="./htmx-1.9.10.js"></script>
 </head>
 
 <body>
-
+    <div id="counter">0</div>
+    <button hx-target="#counter" hx-post="/decrease">
+        Decrease
+    </button>
+    <button hx-target="#counter" hx-post="/increase">
+        Increase
+    </button>
 </body>
 
 </html>
