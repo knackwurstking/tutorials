@@ -26,6 +26,8 @@ func main() {
 	userHandler := handler.UserHandler{}
 	app.GET("/user", userHandler.HandleUserShow)
 
+	app.Static("/assets", "./assets")
+
 	app.Start(":3000") // NOTE: dev port number 3000
 }
 

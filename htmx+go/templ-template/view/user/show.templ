@@ -15,10 +15,10 @@ func getUser(ctx context.Context) string {
 }
 
 templ Show(user model.User) {
-	<h1>
-		{ getUser(ctx) }
-	</h1>
 	@layout.Base() {
+		<h1>
+			{ getUser(ctx) }
+		</h1>
 		<h1>Hello "{ user.Email }" from the user page</h1>
 		@components.Input(components.InputProps{
 			Type: "email",
