@@ -1,8 +1,8 @@
 package handler
 
 import (
-	"templ-setup/model"
-	"templ-setup/view/user"
+	"templ-template/model"
+	"templ-template/view/user"
 
 	"github.com/labstack/echo/v4"
 )

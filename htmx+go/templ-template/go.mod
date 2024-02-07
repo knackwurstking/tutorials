@@ -1,4 +1,4 @@
-module templ-setup
+module templ-template
 
 go 1.21
 

@@ -11,9 +11,9 @@ import "io"
 import "bytes"
 
 import (
-	"templ-setup/model"
-	"templ-setup/view/components"
-	"templ-setup/view/layout"
+	"templ-template/model"
+	"templ-template/view/components"
+	"templ-template/view/layout"
 )
 
 func getUser(ctx context.Context) string {
