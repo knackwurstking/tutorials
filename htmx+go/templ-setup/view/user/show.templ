@@ -1,5 +1,9 @@
 package user
 
+import "templ-setup/view/layout"
+
 templ Show() {
-	<h1>Hello from the user page</h1>
+	@layout.Base() {
+		<h1>Hello from the user page</h1>
+	}
 }
