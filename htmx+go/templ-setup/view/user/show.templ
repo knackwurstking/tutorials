@@ -2,11 +2,27 @@ package user
 
 import (
 	"templ-setup/view/layout"
+	"templ-setup/view/components"
 	"templ-setup/model"
 )
 
+func getUser(ctx context.Context) string {
+	user, ok := ctx.Value("user").(string)
+	if ok {
+		return user
+	}
+	return ""
+}
+
 templ Show(user model.User) {
+	<h1>
+		{ getUser(ctx) }
+	</h1>
 	@layout.Base() {
 		<h1>Hello "{ user.Email }" from the user page</h1>
+		@components.Input(components.InputProps{
+			Type: "email",
+			Name: "email",
+		})
 	}
 }
