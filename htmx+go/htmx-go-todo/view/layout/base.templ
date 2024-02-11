@@ -7,10 +7,11 @@ templ Base() {
 			<title>HTMX Go Todo</title>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
+			<link href="/assets/css/svelte-css.min.css" rel="stylesheet"/>
 			<link href="/assets/css/style.css" rel="stylesheet"/>
 			<script src="/assets/js/htmx-go-todo.js"></script>
 		</head>
-		<body>
+		<body data-theme="dark">
 			{ children... }
 		</body>
 	</html>

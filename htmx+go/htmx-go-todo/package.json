@@ -5,8 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "build": "vite build",
-        "dev": "vite build --watch"
+        "build": "vite build"
     },
     "author": "",
     "license": "ISC",
@@ -14,6 +13,6 @@
         "vite": "^5.1.1"
     },
     "dependencies": {
-        "htmx.org": "^1.9.10"
+        "svelte-css": "github:knackwurstking/svelte-css#v0.7.0"
     }
 }
