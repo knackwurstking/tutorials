@@ -23,7 +23,7 @@ func Base() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><title>HTMX Go Todo</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link href=\"/assets/css/svelte-css.min.css\" rel=\"stylesheet\"><link href=\"/assets/css/style.css\" rel=\"stylesheet\"><script src=\"/assets/js/htmx-go-todo.js\"></script></head><body data-theme=\"dark\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><title>HTMX Go Todo</title><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link href=\"/assets/css/svelte-css.min.css\" rel=\"stylesheet\"><link href=\"/assets/css/style.css\" rel=\"stylesheet\"><script src=\"/assets/js/htmx-1.9.10.js\"></script><script src=\"/assets/js/htmx-go-todo.js\"></script></head><body data-theme=\"dark\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
