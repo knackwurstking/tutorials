@@ -9,7 +9,7 @@ export default defineConfig({
 			name: "[name]",
 			filename: "[name]",
 		},
-		outDir: "assets",
+		outDir: "assets/js",
 		emptyOutDir: false,
 	},
 });
