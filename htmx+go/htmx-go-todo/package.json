@@ -10,7 +10,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "vite": "^5.1.1"
+        "vite": "^5.4.12"
     },
     "dependencies": {
         "svelte-css": "github:knackwurstking/svelte-css#v0.7.0"
