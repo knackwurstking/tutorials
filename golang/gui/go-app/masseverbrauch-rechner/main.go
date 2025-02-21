@@ -57,7 +57,19 @@ func main() {
 						"/web/ui-v2.0.0.css",
 					},
 					HTML: func() app.HTMLHtml {
-						return app.Html().Attr("data-theme", "auto")
+						return app.Html().
+							Styles(map[string]string{
+								"width":  "100%",
+								"height": "100%",
+							}).
+							Attr("data-theme", "auto")
+					},
+					Body: func() app.HTMLBody {
+						return app.Body().
+							Styles(map[string]string{
+								"width":  "100%",
+								"height": "100%",
+							})
 					},
 				}
 
