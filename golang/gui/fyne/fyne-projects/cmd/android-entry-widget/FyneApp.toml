@@ -1,0 +1,6 @@
+[Details]
+  Icon = "./icon.png"
+  Name = "Entry Widget Test"
+  ID = "com.knackwurstking.fyneentry"
+  Version = "0.0.1"
+  Build = 2
