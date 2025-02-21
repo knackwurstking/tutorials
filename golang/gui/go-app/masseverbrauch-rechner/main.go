@@ -31,6 +31,9 @@ func init() {
 }
 
 func main() {
+	// TODO: Add static resources to web directory, like CSS
+	// LINK: https://go-app.dev/static-resources#:~:text=JavaScript%20files-,ACCESS%20STATIC%20RESOURCES,-To%20work%20with
+
 	app.Route("/", func() app.Composer {
 		return &components.Test{}
 	})
