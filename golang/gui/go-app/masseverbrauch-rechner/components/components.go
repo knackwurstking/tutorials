@@ -1,5 +1,5 @@
 package components
 
-import "masseverbrauch-rechner/components/test"
+import "masseverbrauch-rechner/components/calculator"
 
-type Test = test.Test
+type Calculator = calculator.Calculator

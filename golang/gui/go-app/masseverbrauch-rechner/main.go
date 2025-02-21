@@ -10,7 +10,7 @@ import (
 	"github.com/SuperPaintman/nice/cli"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 
-	"masseverbrauch-rechner/components"
+	"masseverbrauch-rechner/pages"
 )
 
 const (
@@ -43,11 +43,12 @@ func main() {
 				setupLogging()
 
 				app.Route("/", func() app.Composer {
-					return &components.Test{}
+					return &pages.Root{}
 				})
 
 				app.RunWhenOnBrowser()
 
+				// TODO: Add app icons
 				handler := &app.Handler{
 					Name:        "Masseverbrauch-Rechner",
 					Description: "Ein einfacher Rechner für den Masseverbrauch für Presse 0.",
