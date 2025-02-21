@@ -19,27 +19,28 @@ const (
 	Version = "v0.0.0"
 )
 
-func init() {
-	slogcolor.DefaultOptions.Level = slog.LevelDebug
-
-	slog.SetDefault(
-		slog.New(
-			slogcolor.NewHandler(
-				os.Stderr, slogcolor.DefaultOptions,
-			),
-		),
-	)
-}
-
 func main() {
 	cli := cli.App{
 		Name:  "picow-led-server",
 		Usage: cli.Usage("PicoW LED Server"),
 		Action: cli.ActionFunc(func(cmd *cli.Command) cli.ActionRunner {
-			// TODO: Flags: "--generate-pages"
+			var debug bool
+			var generatePages bool
+
+			_ = cli.BoolVar(cmd, &debug, "debug",
+				cli.Usage("Enable debug mode"),
+				cli.WithShort("d"),
+				cli.Optional,
+			)
+
+			_ = cli.BoolVar(cmd, &generatePages, "generate-pages",
+				cli.Usage("Generate static pages"),
+				cli.WithShort("g"),
+				cli.Optional,
+			)
 
 			return func(cmd *cli.Command) error {
-				app.Html().Attr("data-theme", "dark")
+				setupLogging()
 
 				app.Route("/", func() app.Composer {
 					return &components.Test{}
@@ -59,16 +60,11 @@ func main() {
 					},
 				}
 
-				// TODO: Check for flag: "--generate-pages"
-				if err := generateStaticWebsite(handler); err != nil {
-					return err
+				if generatePages {
+					return app.GenerateStaticWebsite("dist", handler)
 				}
 
-				if err := serve(handler); err != nil {
-					return err
-				}
-
-				return nil
+				return serve(handler)
 			}
 		}),
 		// Commands: []cli.Command{
@@ -83,8 +79,16 @@ func main() {
 	cli.HandleError(cli.Run())
 }
 
-func generateStaticWebsite(handler *app.Handler) error {
-	return fmt.Errorf("not implemented") // TODO: Implement
+func setupLogging() {
+	slogcolor.DefaultOptions.Level = slog.LevelDebug
+
+	slog.SetDefault(
+		slog.New(
+			slogcolor.NewHandler(
+				os.Stderr, slogcolor.DefaultOptions,
+			),
+		),
+	)
 }
 
 func serve(handler *app.Handler) error {
