@@ -2,7 +2,7 @@ clean:
 	@git clean -f -x -d
 
 build:
-	go build -o bin/masseverbrauch-rechner .
+	@GOARCH=wasm GOOS=js go build -o web/app.wasm && go build -o bin/masseverbrauch-rechner .
 
-dev:
-	nodemon -L --signal SIGTERM --exec 'go run .' --ext 'go,mod,sum' --delay 3 --ignore bin
+run:
+	@GOARCH=wasm GOOS=js go build -o web/app.wasm && go run .
