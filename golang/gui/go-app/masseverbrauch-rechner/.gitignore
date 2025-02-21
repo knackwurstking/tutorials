@@ -1,7 +1,3 @@
 /bin/
-
-/dist/*
-!/dist/web
-
-/dist/web/*
-!/dist/web/ui-v2.0.0.css
+/dist/
+/web/*.wasm
