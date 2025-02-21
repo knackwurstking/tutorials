@@ -16,6 +16,9 @@ const (
 )
 
 func init() {
+	// TODO: Add flags parser for "--generate-pages"
+	// LINK:  https://go-app.dev/github-deploy#:~:text=GitHub%20Pages.-,GENERATE%20A%20STATIC%20WEBSITE,-A%20static%20website
+
 	slogcolor.DefaultOptions.Level = slog.LevelDebug
 
 	slog.SetDefault(
