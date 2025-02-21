@@ -4,6 +4,7 @@ go 1.24.0
 
 require (
 	github.com/MatusOllah/slogcolor v1.5.0
+	github.com/SuperPaintman/nice v0.0.0-20211001214957-a29cd3367b17
 	github.com/maxence-charriere/go-app/v10 v10.0.10
 )
 

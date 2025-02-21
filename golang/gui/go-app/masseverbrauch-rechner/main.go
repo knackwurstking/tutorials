@@ -1,11 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"log/slog"
 	"net/http"
 	"os"
 
 	"github.com/MatusOllah/slogcolor"
+	"github.com/SuperPaintman/nice/cli"
 	"github.com/maxence-charriere/go-app/v10/pkg/app"
 
 	"masseverbrauch-rechner/components"
@@ -13,12 +15,11 @@ import (
 
 const (
 	ErrorServerStartFailed = 10
+
+	Version = "v0.0.0"
 )
 
 func init() {
-	// TODO: Add flags parser for "--generate-pages"
-	// LINK:  https://go-app.dev/github-deploy#:~:text=GitHub%20Pages.-,GENERATE%20A%20STATIC%20WEBSITE,-A%20static%20website
-
 	slogcolor.DefaultOptions.Level = slog.LevelDebug
 
 	slog.SetDefault(
@@ -31,31 +32,68 @@ func init() {
 }
 
 func main() {
-	app.Html().Attr("data-theme", "dark")
+	cli := cli.App{
+		Name:  "picow-led-server",
+		Usage: cli.Usage("PicoW LED Server"),
+		Action: cli.ActionFunc(func(cmd *cli.Command) cli.ActionRunner {
+			// TODO: Flags: "--generate-pages"
 
-	app.Route("/", func() app.Composer {
-		return &components.Test{}
-	})
+			return func(cmd *cli.Command) error {
+				app.Html().Attr("data-theme", "dark")
 
-	app.RunWhenOnBrowser()
+				app.Route("/", func() app.Composer {
+					return &components.Test{}
+				})
 
-	handler := &app.Handler{
-		Name:        "Masseverbrauch-Rechner",
-		Description: "Ein einfacher Rechner für den Masseverbrauch für Presse 0.",
-		Lang:        "de",
-		Styles: []string{
-			"/web/ui-v2.0.0.css",
-		},
-		HTML: func() app.HTMLHtml {
-			return app.Html().Attr("data-theme", "auto")
+				app.RunWhenOnBrowser()
+
+				handler := &app.Handler{
+					Name:        "Masseverbrauch-Rechner",
+					Description: "Ein einfacher Rechner für den Masseverbrauch für Presse 0.",
+					Lang:        "de",
+					Styles: []string{
+						"/web/ui-v2.0.0.css",
+					},
+					HTML: func() app.HTMLHtml {
+						return app.Html().Attr("data-theme", "auto")
+					},
+				}
+
+				// TODO: Check for flag: "--generate-pages"
+				if err := generateStaticWebsite(handler); err != nil {
+					return err
+				}
+
+				if err := serve(handler); err != nil {
+					return err
+				}
+
+				return nil
+			}
+		}),
+		// Commands: []cli.Command{
+		// 	cli.CompletionCommand(),
+		// },
+		CommandFlags: []cli.CommandFlag{
+			cli.HelpCommandFlag(),
+			cli.VersionCommandFlag(Version),
 		},
 	}
 
+	cli.HandleError(cli.Run())
+}
+
+func generateStaticWebsite(handler *app.Handler) error {
+	return fmt.Errorf("not implemented") // TODO: Implement
+}
+
+func serve(handler *app.Handler) error {
 	http.Handle("/", handler)
 
 	slog.Info("Starting server", "address", ":8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
-		slog.Error("Server start failed", "error", err)
-		os.Exit(ErrorServerStartFailed)
+		return fmt.Errorf("server start failed: %w", err)
 	}
+
+	return nil
 }
