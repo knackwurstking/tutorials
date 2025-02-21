@@ -31,8 +31,7 @@ func init() {
 }
 
 func main() {
-	// TODO: Add static resources to web directory, like CSS
-	// LINK: https://go-app.dev/static-resources#:~:text=JavaScript%20files-,ACCESS%20STATIC%20RESOURCES,-To%20work%20with
+	app.Html().Attr("data-theme", "dark")
 
 	app.Route("/", func() app.Composer {
 		return &components.Test{}
@@ -40,11 +39,21 @@ func main() {
 
 	app.RunWhenOnBrowser()
 
-	http.Handle("/", &app.Handler{
+	handler := &app.Handler{
 		Name:        "Masseverbrauch-Rechner",
 		Description: "Ein einfacher Rechner für den Masseverbrauch für Presse 0.",
-	})
+		Lang:        "de",
+		Styles: []string{
+			"/web/ui-v2.0.0.css",
+		},
+		HTML: func() app.HTMLHtml {
+			return app.Html().Attr("data-theme", "auto")
+		},
+	}
 
+	http.Handle("/", handler)
+
+	slog.Info("Starting server", "address", ":8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		slog.Error("Server start failed", "error", err)
 		os.Exit(ErrorServerStartFailed)
