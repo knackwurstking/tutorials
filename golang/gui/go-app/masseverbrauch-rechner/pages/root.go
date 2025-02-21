@@ -15,7 +15,9 @@ type Root struct {
 func (r *Root) Render() app.UI {
 	slog.Debug("Rendering page", "name", "Root")
 
-	calc := &components.Calculator{}
+	calc := &components.Calculator{} // TODO: Forget about this calc component
+
+	// TODO: Create form inputs needed for calculation
 
 	return app.Div().
 		Class("ui-debug").
